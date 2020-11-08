@@ -1,0 +1,32 @@
+version: '3.6'
+
+networks:
+   rosen-db:
+
+services:
+   db:
+     image: postgres
+     environment:
+      POSTGRES_PASSWORD: admin
+     volumes:
+      - '/var/lib/postgresql/data'
+     networks:
+      - 'rosen-db'
+   gochain:
+      image: gochain
+      build:
+        context: .
+        dockerfile: Dockerfile
+      environment:
+        IP: 0.0.0.0
+        PORT: 8000
+        POSTGRES_URL: db
+        POSTGRES_PASSWORD: admin
+      ports:
+        - '8000:8000'
+      depends_on:
+        - 'db'
+      links:
+        - 'db'
+      networks:
+        - 'rosen-db'

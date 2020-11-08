@@ -21,4 +21,4 @@ make
     - [X] Build docker image
     - [X] Configure go and run the app on port 8000
     - [X] Create postgresql database and link it
-    - [X] Bonus: Create a swagger ui with swaggerapi
+    - [ ] Bonus: Create a swagger ui with swaggerapi
